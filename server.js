@@ -11,11 +11,10 @@ const logger = createLogger({
   transports: [new transports.Console()]
 });
 
-msg = 'RSAP0001I: Transaction OK'
-logger.info(msg, {"errCode": "RSAP0001I", "transactionTime": delay})
-
 msg = 'RSAP0010E: Severe problem detected'
-logger.error(msg, {"errorCode": "RSAP0010E", "transactionTime": delay})
+logger.error(msg)
+msg = 'RSAP0001I: Transaction OK'
+logger.info(msg)
 
 //  OpenShift sample Node application
 var express = require('express'),
