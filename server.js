@@ -1,3 +1,16 @@
+const { createLogger, format, transports } = require('winston')
+
+const logger = createLogger({
+  level: 'debug',
+  format: format.combine(
+    format.timestamp({
+      format: "YYYY-MM-DD'T'HH:mm:ss.SSSZ"
+    }),
+    format.json()
+  ),
+  transports: [new transports.Console()]
+});
+
 //  OpenShift sample Node application
 var express = require('express'),
     app     = express(),
@@ -124,22 +137,6 @@ console.log('Server running on http://%s:%s', ip, port);
 
 module.exports = app ;
 
-const { createLogger, format, transports } = require('winston')
 
-const logger = createLogger({
-  level: 'debug',
-  format: format.combine(
-    format.timestamp({
-      format: "YYYY-MM-DD'T'HH:mm:ss.SSSZ"
-    }),
-    format.json()
-  ),
-  transports: [new transports.Console()]
-});
 
-msg = 'RSAP0001I: Transaction OK'
-logger.info(msg, {"errCode": "RSAP0001I", "transactionTime": delay})
-
-msg = 'RSAP0010E: Severe problem detected'
-logger.error(msg, {"errorCode": "RSAP0010E", "transactionTime": delay})
 
